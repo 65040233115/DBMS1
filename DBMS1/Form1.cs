@@ -28,21 +28,40 @@ namespace DBMS1
         {
             conn.Close();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             connect();
             string sql = "select*from Products";
+            //da = new SqlDataAdapter(sql, conn);
+            // DataSet ds = new DataSet();
+            // da.Fill(ds);
+            //dataGridView1.DataSource = ds.Tables[0];
+
+        }
+        private void showData(string sql)
+        {
             da = new SqlDataAdapter(sql, conn);
             DataSet ds = new DataSet();
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
-
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        private void พนักงาน(object sender, EventArgs e)
+        {
+            showData("select EmployeeID,Title+FirstName+''+LastName EmpName,Position\r\nfrom Employees");
+        }
+
+        private void ประเภทสินค้า(object sender, EventArgs e)
+        {
+            showData("select * from Categories");
+        }
+
+        private void รายชื่อค้า(object sender, EventArgs e)
+        {
+            showData("select * from Products");
         }
     }
 } 
